@@ -191,9 +191,9 @@ In both scenarios training episodes of the RL agent are given.
 ### Scenario1: Randomly executed episodes are available or inexpensive: 
 In this scenario, we can consider that episodes of random executions of the agent are available. 
 One example is when the agent is tested to some extent. However, before final deployment, we want further test the agent using STARLA. 
-Another situation is when the RL agent is trained and tested using both a simulator and hardware in the loop [56].
+Another situation is when the RL agent is trained and tested using both a simulator and hardware in the loop [4].
 
-In this situation, an agent is trained and tested on a simulator in order to have a ”warm-start” learning on real hardware [56], [57]. Since STARLA produces episodes with a high fault probability, we can use it to test the agent when executed on real hardware to further assess the reliability of the agent. In such situation, STARLA uses episodes that are generated with a simulator and executes the newly generated episodes on the hardware.
+In this situation, an agent is trained and tested on a simulator in order to have a ”warm-start” learning on real hardware [4]. Since STARLA produces episodes with a high fault probability, we can use it to test the agent when executed on real hardware to further assess the reliability of the agent. In such situation, STARLA uses episodes that are generated with a simulator and executes the newly generated episodes on the hardware.
 
 More precisely, the total testing budget in this scenario is equal to:
 
