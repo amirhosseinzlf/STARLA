@@ -236,7 +236,7 @@ In this part, we assess the accuracy of trained models that extract the rules of
 
 
 <p align="center" width="100%">
-    <img width="60%" src="https://user-images.githubusercontent.com/23516995/168654683-a3faef84-2f2b-42c9-81e5-e3cc43a26314.png"> 
+    <img width="50%" src="https://user-images.githubusercontent.com/23516995/168654683-a3faef84-2f2b-42c9-81e5-e3cc43a26314.png"> 
 </p>
 
 
