@@ -214,7 +214,7 @@ The number of episodes in the initial population (generated through random execu
 
 ## RQ2: Can we rely on ML models to predict faulty episodes?
 
-* In this research question we investigate the accuracy of ML classifiers in predicting faulty episodes of the RL agent. *
+*In this research question we investigate the accuracy of ML classifiers in predicting faulty episodes of the RL agent.*
 
 we use Random Forest to predict the probabilities of reward and functional faults in a given episode.
 To build our training dataset, we sampled episodes from both episodes generated through random executions of the agent and episodes from the training phase of the agent. Episodes are encoded based on the presence or absence of their abstract states. We have 2 different ML models, one for predicting the probability of a reward fault and the other one for predicting the probability of a functional fault. we considered 70 % of data for training and 30% for testing.
