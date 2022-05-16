@@ -229,6 +229,8 @@ To build our training dataset, we sampled episodes from both episodes generated 
 ## RQ3. Can we learn accurate rules to characterize the faulty episodes of RL agents?
 
 *Here, we investigate the learning of interpretable rules that characterize faulty episodes to understand the conditions under which the RL agent can be expected to fail.*
+
+
 For this reason, we need to rely on an interpretable ML model, in this case, a Decision Tree model, to learn such rules.
 We assess the accuracy of decision trees and therefore our ability to learn accurate rules based on the faulty episodes that we identify with STARLA. 
 In practice, engineers will need to use such an approach to assess the safety of using an RL agent and understand the reasons of faults.
