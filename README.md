@@ -243,14 +243,9 @@ In this part, we assess the accuracy of trained models that extract the rules of
 
 
 
-
 Acknowledgements
 --------------
 This work was supported by a research grant from General Motors as well as the Canada Research Chair and Discovery Grant programs of the Natural Sciences and Engineering Research Council of Canada (NSERC).
-
-Notes
------
-
 
 
 References
