@@ -60,9 +60,13 @@ The pole starts upright, and the goal is to balance it by moving the cart left o
 </p>
 
 As depicted in the figure, the state of the system is characterized by four elements:
+
 • The position of the cart
+
 • The velocity of the cart
+
 • The angle of the pole
+
 • The angular velocity of the pole
 
 We provide a reward of +1 for each time step when the pole is still upright. 
