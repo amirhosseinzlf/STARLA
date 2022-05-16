@@ -47,7 +47,7 @@ The algorithm uses the data from the Agent to build ML models that predict the p
 In the Genetic search, we use specific crossover and mutation functions. Also as we have multiple fitness functions, we are using MOSA Algorithm. For more explanations please see our paper \cite
 
 
-## Use case 
+## Use Case 
 
 This project is implemented in the Cartpole environment for the OpenAI Gym library. Cartpole environment is an open-source and widely used environment for RL agents
 
@@ -84,7 +84,7 @@ We define reward and functional faults in the Cart-Pole problem as follows:
 - **Functional fault:** If in a given episode, the cart moves away from the center with a distance above 2.4 units, regardless of the accumulated reward, we consider that there is a functional fault in that episode.
 
 
-## Code breakdown
+## Code Breakdown
 This project is implemented in python with GoogleColab (Jupyter-notebook).
 
 
@@ -124,7 +124,7 @@ Change the version of TensorFlow using the line below:
 Here is the documentation on how to use this replication package.
 
 
-### Getting started
+### Getting Started
 
 1. Clone the repo on your Google drive and run the codes using Google Colab https://colab.research.google.com/.
 2. Download the Dataset of replication package from [here](https://drive.google.com/drive/folders/16ALL0MuDw2bIDJenD12VLny_4vY23qDE?usp=sharing) and upload it to you Google drive( if you change the location of the files you need to update their path in notebooks
@@ -214,7 +214,7 @@ The number of episodes in the initial population (generated through random execu
 
 ## RQ2: Can we rely on ML models to predict faulty episodes?
 
-*In this research question we investigate the accuracy of ML classifiers in predicting faulty episodes of the RL agent. *
+* In this research question we investigate the accuracy of ML classifiers in predicting faulty episodes of the RL agent. *
 
 we use Random Forest to predict the probabilities of reward and functional faults in a given episode.
 To build our training dataset, we sampled episodes from both episodes generated through random executions of the agent and episodes from the training phase of the agent. Episodes are encoded based on the presence or absence of their abstract states. We have 2 different ML models, one for predicting the probability of a reward fault and the other one for predicting the probability of a functional fault. we considered 70 % of data for training and 30% for testing.
