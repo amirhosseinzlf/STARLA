@@ -235,6 +235,9 @@ In practice, engineers will need to use such an approach to assess the safety of
 In this part, we assess the accuracy of trained models that extract the rules of functional and reward faults based on k-fold cross-validation.
 
 
+<p align="center" width="100%">
+    <img width="60%" src="https://user-images.githubusercontent.com/23516995/168654683-a3faef84-2f2b-42c9-81e5-e3cc43a26314.png"> 
+</p>
 
 
 ![image](https://user-images.githubusercontent.com/23516995/168505819-7c835496-6a8c-400d-a85c-ce5367b603b5.png)
