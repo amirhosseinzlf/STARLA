@@ -92,7 +92,7 @@ We have two main notebook files the first one is `STARLA.ipynb` which contains t
 
 `STARLA.ipynb` contains the implementation of our search-based testing approach. The results are stored as files. 
 
-`Execute_Results.ipynb` removed the duplicated episodes in the results and executed the final set of episodes. This is to keep only valid and consistent failing episodes. Thes results are saved as files
+`Execute_Results.ipynb` removed the duplicated episodes in the results and executed the final set of episodes. This is to keep only valid and consistent failing episodes. Thes results are saved as files.
 
 As our algorithm is randomized to have a fair comparison we need to run our algorithm and the baseline many times and compare the results. 
 
@@ -127,9 +127,9 @@ Here is the documentation on how to use this replication package.
 ### Getting Started
 
 1. Clone the repo on your Google drive and run the codes using Google Colab https://colab.research.google.com/.
-2. Download the Dataset of replication package from [here](https://drive.google.com/drive/folders/16ALL0MuDw2bIDJenD12VLny_4vY23qDE?usp=sharing) and upload it to you Google drive( if you change the location of the files you need to update their path in notebooks
-3. To generate test episodes: open `STARLA.ipynb` Mount your drive and run the code
-4. To execute the final results run `Execute_Results.ipynb`
+2. Download the Dataset of replication package from [here](https://drive.google.com/drive/folders/16ALL0MuDw2bIDJenD12VLny_4vY23qDE?usp=sharing) and upload it to you Google drive (if you change the location of the files you need to update their path in notebooks).
+3. To generate test episodes: open `STARLA.ipynb` Mount your drive and run the code.
+4. To execute the final results run `Execute_Results.ipynb`.
 
 The code to generate the results of research questions are in the `RQ` folder 
 
@@ -144,7 +144,7 @@ This is the root directory of the repository. The directory is structured as fol
      |
      |--- STARLA/RQ/                        Codes to replicate RQ1 - RQ2 and RQ3
      |
-     |--- STARLA.ipynb                      Implementation of algorithm
+     |--- STARLA.ipynb                      Implementation of the algorithm
      |
      |--- Execute_Results.ipynb             Execution of the result (required for RQ1 and RQ3)             
   
@@ -166,7 +166,7 @@ This is the root directory of the repository. The directory is structured as fol
      |
      |--- /random_test_data.pickle                             Random tests episodes representing the final policy of the agent. This also provides the data as a baseline for comparison.
      |
-     |--- /Results/                                            Generated episodes as a result of running STARLA.ipynb . this folder contains results of 14 executions
+     |--- /Results/                                            Generated episodes as a result of running STARLA.ipynb. This folder contains results of 14 executions
      |
      |--- /Executions/                                         Executed results 
      |
@@ -187,14 +187,17 @@ Our experimental evaluation answers the research questions below.
 *In this research question we want to study the effectiveness of STARLA in finding more faults than Random Testing when we consider the same testing budget, measured as the number of executed episodes.*
 
 To do so, we consider two practical testing scenarios:
-In both scenarios training episodes of the RL agent are given
+In both scenarios training episodes of the RL agent are given.
 ### Scenario1: Randomly executed episodes are available or inexpensive: 
 In this scenario, we can consider that episodes of random executions of the agent are available. 
-One example is when the agent is tested to some extent. but before final deployment, we want further test the agent using STARLA 
+One example is when the agent is tested to some extent. However, before final deployment, we want further test the agent using STARLA. 
 Another situation is when the RL agent is trained and tested using both a simulator and hardware in the loop [56].
 
-In this situation, an agent is trained and tested on a simulator in order to have a ”warm-start” learning on real hardware [56], [57]. Since STARLA produces episodes with a high fault probability, we can use it to test the agent when executed on real hardware to further assess the reliability of the agent. In such situation, STARLA uses simulator-generated episodes and executes the newly generated episodes on the hardware.
+In this situation, an agent is trained and tested on a simulator in order to have a ”warm-start” learning on real hardware [56], [57]. Since STARLA produces episodes with a high fault probability, we can use it to test the agent when executed on real hardware to further assess the reliability of the agent. In such situation, STARLA uses episodes that are generated with a simulator and executes the newly generated episodes on the hardware.
 
+More precisely, the total testing budget in this scenario is equal to:
+
+Mutated episodes that have been executed during the search + Faulty episodes generated by STARLA (executed after the search)
 
 
 ### Senario2: Randomly executed episodes are generated with STARLA and should be accounted for in the testing budget: 
@@ -209,15 +212,15 @@ The number of episodes in the initial population (generated through random execu
 </p>
 
 
-**Answer:** We find significantly more functional faults with STARLA than with Random Testing using the same testing budget. 
+**Answer:** For both scenarios, we find significantly more functional faults with STARLA than with Random Testing using the same testing budget. 
 
 
 ## RQ2: Can we rely on ML models to predict faulty episodes?
 
 *In this research question we investigate the accuracy of ML classifiers in predicting faulty episodes of the RL agent.*
 
-we use Random Forest to predict the probabilities of reward and functional faults in a given episode.
-To build our training dataset, we sampled episodes from both episodes generated through random executions of the agent and episodes from the training phase of the agent. Episodes are encoded based on the presence or absence of their abstract states. We have 2 different ML models, one for predicting the probability of a reward fault and the other one for predicting the probability of a functional fault. we considered 70 % of data for training and 30% for testing.
+We use Random Forest to predict the probabilities of reward and functional faults in a given episode.
+To build our training dataset, we sampled episodes from both episodes generated through random executions of the agent and episodes from the training phase of the agent. Episodes are encoded based on the presence or absence of their abstract states. We have two different ML models, one for predicting the probability of a reward fault and the other one for predicting the probability of a functional fault. We considered 70 % of data for training and 30% for testing.
 
 **Answer:** Using the mentioned ML classifier and feature representation, we can accurately classify the episodes of RL agents as having functional faults, reward faults, or no fault at all.
 
@@ -226,7 +229,7 @@ To build our training dataset, we sampled episodes from both episodes generated 
 ## RQ3. Can we learn accurate rules to characterize the faulty episodes of RL agents?
 
 *Here, we investigate the learning of interpretable rules that characterize faulty episodes to understand the conditions under which the RL agent can be expected to fail. *
-For this reason, we need to rely on an interpretable ML model, in this case, a Decision Tree, to learn such rules.
+For this reason, we need to rely on an interpretable ML model, in this case, a Decision Tree model, to learn such rules.
 We assess the accuracy of decision trees and therefore our ability to learn accurate rules based on the faulty episodes that we identify with STARLA. 
 In practice, engineers will need to use such an approach to assess the safety of using an RL agent and understand the reasons of faults.
 In this part, we assess the accuracy of trained models that extract the rules of functional and reward faults based on k-fold cross-validation.
