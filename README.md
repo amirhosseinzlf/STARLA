@@ -34,7 +34,7 @@ Cite
 
 ## Description of the Approach
 
-STARLA Requires a DRL agent and its training data as input as tries to effectively and efficiently generate failing test cases (episodes) to reveal the faults of agents policy. detailed approach is depicted in the following diagram:
+STARLA Requires a DRL agent and its training data as input as tries to effectively and efficiently generate failing test cases (episodes) to reveal the faults of agents policy. Detailed approach is depicted in the following diagram:
 
 
 ![Approach4_page-0001](https://user-images.githubusercontent.com/23516995/168500802-50486e30-2c5d-43c2-a080-9cc01d964e30.jpg)
