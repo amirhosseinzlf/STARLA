@@ -239,8 +239,11 @@ In this part, we assess the accuracy of trained models that extract the rules of
 
 
 <p align="center" width="100%">
-    <img width="50%" src="https://user-images.githubusercontent.com/23516995/168681924-8154520c-f2ae-4238-ac1b-bb6bc0d728df.png"> 
+    <img width="50%" src="https://user-images.githubusercontent.com/23516995/169616496-bebacddf-cb97-4ab3-bcf9-cfb8b654a4ee.png"> 
 </p>
+
+
+
 
 
 **Answer:** By using STARLA and interpretable ML models, such as Decision Trees, we can accurately learn rules that characterize the faulty episodes of RL agents.
