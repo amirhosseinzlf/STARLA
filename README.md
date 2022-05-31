@@ -166,7 +166,7 @@ This is the root directory of the repository. The directory is structured as fol
      |
      |--- /random_test_data.pickle                             Random tests episodes representing the final policy of the agent. This also provides the data as a baseline for comparison.
      |
-     |--- /Results/                                            Generated episodes as a result of running STARLA.ipynb. This folder contains results of 14 executions
+     |--- /Results/                                            Generated episodes as a result of running STARLA.ipynb. This folder contains results of 20 executions
      |
      |--- /Executions/                                         Executed results 
      |
