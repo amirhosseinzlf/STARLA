@@ -272,7 +272,7 @@ We illustrate in the following figure an interpretation of such conditions.
     <img width="50%" src="https://user-images.githubusercontent.com/23516995/171913026-a1713863-4ac8-46d9-b930-6a20b7ba1a53.png"> 
 </p>
 
-Each cart represents one abstract state. The Gray cart depicts the state of the system in abstract state $S^\phi_5$, which should be absent in the episode. The black carts represent the presence of abstract states $S^\phi_12$ and $S^\phi_23$, respectively. Having both states of the cart shown in the right as and not having the state at the left indicate a fault.
+Each cart represents one abstract state. The Gray cart depicts the state of the system in abstract state $S^\phi_5$, which should be absent in the episode. The black carts represent the presence of abstract states $S^\phi_{12}$ and $S^\phi_{23}$, respectively. Having both states of the cart shown in the right as and not having the state at the left indicate a fault.
 
 We realized that the presence of abstract states $S^\phi_{12}$ and $S^\phi_{23}$ represent situations where the cart is close to the right border of the track and the angle of the pole is towards the right. To compensate for the large angle of the pole, as you can see in the figure, the agent has no choice but to push the cart to the right, which results in a fault because of passing the border. Moreover, abstract state $S^\phi_{5}$ represents a situation where the angle of the pole is not large, and the position of the cart is toward the right but not close to the border. In such situation, the agent will be able to control the pole in the remaining area and keep the pole upright without crossing the border, which justifies why such abstract state should be absent in faulty episodes that satisfy rule **R1**.
 
