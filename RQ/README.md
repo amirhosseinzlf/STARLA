@@ -64,9 +64,38 @@ In this part, we assess the accuracy of trained models that extract the rules of
 </p>
 
 
+Such highly accurate rules can help developers understand the conditions under which the agent fails. One can analyze, the concrete states that correspond to abstract states leading to faults to extract real-world conditions of failure. 
+For example, we extracted the following faulty rule $Not(S^\phi_{5})$ and $S^\phi_{12}$ and $S^\phi_{23}$ from our decision tree. First we extract all faulty episodes following this rule. Then, we extract from these episodes all concrete states belonging to the abstract states with the condition of presence in **R1**, i.e., $S^\phi_{12}$ and $S^\phi_{23}$.
+For abstract states $S^\phi_5$ where the rule states they should be absent, we extract the set of all corresponding concrete states from all episodes in the final dataset.
+Finally, for each abstract state in the rule, we analyze the distribution of each characteristic of the corresponding concrete states (i.e., the position of the cart, the velocity, the angle of the pole and the angular velocity) to interpret the situations under which the agent fails. below you see the boxplots of the mentioned distributions.
+
+<p align="center" width="100%">
+    <img width="100%" src="https://user-images.githubusercontent.com/23516995/171912017-75548e5b-9151-42f1-afbc-ffafbd8d163e.png"> 
+</p>
 
 
+
+<p align="center" width="100%">
+    <img width="100%" src="https://user-images.githubusercontent.com/23516995/171912194-b58beb6f-7cdd-402a-99d2-193b1c2f1664.png"> 
+</p>
+
+
+<p align="center" width="100%">
+    <img width="100%" src="https://user-images.githubusercontent.com/23516995/171912131-db832638-ea55-4754-a297-a8ae05a98b64.png"> 
+</p>
+
+
+Moreover, we rely on the median values of the distribution of the states' characteristics to illustrate each abstract state and hence the failing conditions. 
+We illustrate in the following figure an interpretation of such conditions.
+
+
+<p align="center" width="100%">
+    <img width="50%" src="https://user-images.githubusercontent.com/23516995/171913026-a1713863-4ac8-46d9-b930-6a20b7ba1a53.png"> 
+</p>
+
+Each cart represents one abstract state. The Gray cart depicts the state of the system in abstract state $S^\phi_5$, which should be absent in the episode. The black carts represent the presence of abstract states $S^\phi_{12}$ and $S^\phi_{23}$, respectively. Having both states of the cart shown in the right as and not having the state at the left indicate a fault.
+
+We realized that the presence of abstract states $S^\phi_{12}$ and $S^\phi_{23}$ represent situations where the cart is close to the right border of the track and the angle of the pole is towards the right. To compensate for the large angle of the pole, as you can see in the figure, the agent has no choice but to push the cart to the right, which results in a fault because of passing the border. Moreover, abstract state $S^\phi_{5}$ represents a situation where the angle of the pole is not large, and the position of the cart is toward the right but not close to the border. In such situation, the agent will be able to control the pole in the remaining area and keep the pole upright without crossing the border, which justifies why such abstract state should be absent in faulty episodes that satisfy rule **R1**.
 
 **Answer:** By using STARLA and interpretable ML models, such as Decision Trees, we can accurately learn rules that characterize the faulty episodes of RL agents.
-
 
