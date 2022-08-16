@@ -29,7 +29,7 @@ This repository is a companion page for the following paper
 
 > Amirhossein Zolfagharian (uOttawa, Canada), Manel Abdellatif (uOttawa, Canada), Lionel Briand (uOttawa, Canada), Ramesh S (General Motors, USA), and Mojtaba Bagherzadeh (uOttawa, Canada)
 
-![arXiv:2206.07813](https://arxiv.org/abs/2206.07813)
+[arXiv:2206.07813](https://arxiv.org/abs/2206.07813)
 
 
 ## Description of the Approach
