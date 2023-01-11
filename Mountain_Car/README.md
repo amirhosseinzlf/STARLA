@@ -17,82 +17,73 @@
 - [Acknowledgements](#acknowledgements)
 
 
-## Introduction
-
-In this project, we propose a Search-based Testing Approach for Reinforcement Learning Agents (STARLA) to test the policy of a DRL agent. This approach effectively searches for failing executions of the agent where we have a limited testing budget. To achieve this, we rely on machine learning models to guide our search and we use a dedicated genetic algorithm to narrow the search toward faulty episodes. These episodes are sequences of states and actions produced by the DRL agent. We apply STARLA on a DQN agent trained in a Cartpole environment for 50K time steps.
-
 
 
 ## Publication
 This repository is a companion page for the following paper 
 > "Search-Based Testing Approach for Deep Reinforcement Learning Agents".
-
 > Amirhossein Zolfagharian (uOttawa, Canada), Manel Abdellatif (uOttawa, Canada), Lionel Briand (uOttawa, Canada), Ramesh S (General Motors, USA), and Mojtaba Bagherzadeh (uOttawa, Canada)
 
 [arXiv:2206.07813](https://arxiv.org/abs/2206.07813)
 
 
-## Description of the Approach
-
-STARLA Requires a DRL agent and its training data as input as tries to effectively and efficiently generate failing test cases (episodes) to reveal the faults of agents policy. Detailed approach is depicted in the following diagram:
-
-
-![Approach4_page-0001](https://user-images.githubusercontent.com/23516995/168500802-50486e30-2c5d-43c2-a080-9cc01d964e30.jpg)
-
-
-
-As depicted, the main objective of STARLA is to generate and find episodes with high fault probabilities in order to assess whether an RL agent can be safely deployed. 
-The algorithm uses the data from the Agent to build ML models that predict the probabilities of fault (to which extent episodes are similar to faulty episodes). The outputs of these models are combined with the reward of the agent and certainty level. They are meant to guide the Genetic search toward faulty episodes. 
-
-In the Genetic search, we use specific crossover and mutation functions. Also as we have multiple fitness functions, we are using MOSA Algorithm[3]. For more explanations please see our paper. [arXiv:2206.07813](https://arxiv.org/abs/2206.07813)
-
 
 ## Use Case 
 
-This project is implemented in the Cartpole environment from the OpenAI Gym library[2]. Cartpole environment is an open-source and widely used environment for RL agents
+The second case study is Mountain Car environment from the OpenAI Gym library[2]. Mountain car environment is an open-source and another widely used environment for RL agents
 
-In the Cart-Pole (also known as invert pendulum), a pole is attached to a cart, which moves along a track. The movement of the cart is bidirectional so the available actions are pushing the cart to the left and right. However, the movement of the cart is restricted and the maximum rage is 2.4 from the central point. 
-The pole starts upright, and the goal is to balance it by moving the cart left or right.
+In the Mountain Car problem, an under-powered car is located in a valley between two hills. 
+Since the gravity is stronger than the engine of the car, the car cannot climb up the steep slope even with full throttle. The objective is to control the car and strategically use its momentum to reach the goal state on top of the right hill as soon as possible. The agent is penalized by -1 for each time step until termination. 
 
 
 <p align="center" width="100%">
     <img width="45%" src="https://user-images.githubusercontent.com/23516995/168501958-b4e278ab-dce6-419c-bb35-4dc1f85b6d99.jpg"> 
 </p>
 
-As depicted in the figure, the state of the system is characterized by four elements:
 
-• The position of the cart
+As illustrated in Figure~\ref{fig:MountainCarExample}, the state of the agent is defined based on:
 
-• The velocity of the cart
+1. the location of the car along the x-axis, and 
 
-• The angle of the pole
+2. the velocity of the car
 
-• The angular velocity of the pole
+There are three discrete actions that can be used to
+control the car:
 
-We provide a reward of +1 for each time step when the pole is still upright. 
-The episodes end in three cases: 
-1. The cart is away from the center with a distance more than 2.4 units
-2. The pole’s angle is more than 12 degrees from vertical
-3. The pole remains upright during 200 time-steps.
+• Accelerate to the left.
 
-Consider a situation in which we are trying to reach a reward above 70.
+• Accelerate to the right.
 
-We define reward and functional faults in the Cart-Pole problem as follows:
+• Do not accelerate
 
-- **Reward fault:** If the accumulative time steps of an episode is less than 70 then we consider that there is a reward fault in this episode (as the agent failed to reach the expected reward in the episode).
 
-- **Functional fault:** If in a given episode, the cart moves away from the center with a distance above 2.4 units, regardless of the accumulated reward, we consider that there is a functional fault in that episode.
+Episodes can have three termination scenarios: 
+
+1. reaching the goal state,
+2. crossing the left border, or 
+3. exceeding the limit of200 time steps.
+
+In our custom version of the Mountain Car, climbing the left hill is considered an unsafe situation. Consequently, reaching to the leftmost position in the environment results in a termination with the lowest reward. 
+
+
+Consider a situation in which we are trying to reach to the goal within 180 time steps.
+
+We define reward and functional faults as follows:
+
+- **Reward fault:** If the accumulative time steps of an episode is more than 180 (i.e., a reward below -180) then we consider that there is a reward fault in this episode (as the agent failed to reach the expected reward in the episode).
+
+- **Functional fault:** If in an episode, the car climbs the left hill and passes the left border of the environment,  we consider that there is a functional fault and the reward is equal to the minimum reward (-200).
 
 
 ## Code Breakdown
 This project is implemented in python with GoogleColab (Jupyter-notebook).
 
 
-We have two main notebook files the first one is `STARLA.ipynb` which contains the implementation of our search-based testing approach. The second one `Execute_Results.ipynb` is the final step to execute the results as is meant to prepare data required for answering RQ1 & RQ3.
+We have two main notebook files the first one is `RUN_STARLA_MTC.ipynb` which contains the implementation of our search-based testing approach for Mountain Car enrironment. The second one `RE_EXECUTE_MTC.ipynb` is the final step to execute the results as is meant to prepare data required for answering RQ1 & RQ3.
 
-`STARLA.ipynb` contains the implementation of our search-based testing approach. The results are stored as files. 
+`RUN_STARLA_MTC.ipynb` contains the implementation of our search-based testing approach for Mountain Car environment. The results are stored as files. 
 
-`Execute_Results.ipynb` removed the duplicated episodes in the results and executed the final set of episodes. This is to keep only valid and consistent failing episodes. Thes results are saved as files.
+`RE_EXECUTE_MTC.ipynb` removed the duplicated episodes in the results and executed the final set of episodes in Mountain Car enrivonment. This is to keep only valid and consistent failing episodes. Thes results are saved as files.
 
 As our algorithm is randomized to have a fair comparison we need to run our algorithm and the baseline many times and compare the results. 
 
@@ -128,32 +119,20 @@ Here is the documentation on how to use this replication package.
 
 1. Clone the repo on your Google drive and run the codes using Google Colab https://colab.research.google.com/.
 2. Download the Dataset of replication package from [here](https://drive.google.com/drive/folders/16ALL0MuDw2bIDJenD12VLny_4vY23qDE?usp=sharing) and upload it to you Google drive (if you change the location of the files you need to update their path in notebooks).
-3. To generate test episodes: open `STARLA.ipynb` Mount your drive and run the code.
-4. To execute the final results run `Execute_Results.ipynb`.
+3. To generate test episodes: open `RUN_STARLA_MTC.ipynb` Mount your drive and run the code.
+4. To execute the final results run `RE_EXECUTE_MTC.ipynb`.
 
-The code to generate the results of research questions are in the `RQ` folder 
+The code to generate the results of research questions are in seperate files
 
 
-
-### Repository Structure
-
-This is the root directory of the repository. The directory is structured as follows:
-
-    Replication package of STARLA
-     .
-     |
-     |--- STARLA/RQ/                        Codes to replicate RQ1 - RQ2 and RQ3
-     |
-     |--- STARLA.ipynb                      Implementation of the algorithm
-     |
-     |--- Execute_Results.ipynb             Execution of the result (required for RQ1 and RQ3)             
+       
   
 ### Dataset Structure 
 
   A Dataset is provided to reproduce the results. This dataset contains our DRL agent, training data of the agent, episodes of random testing of the agent, episodes generated STARLA, execution data of generated episodes as well as the data required to compare the similarities of states and answer RQs.
   
 
-    STARLA-dataset
+    STARLA-MTC-dataset
      .
      |
      |--- /dqn-cartpole-50000-with127-GA-Mut-2.pkl             Trained DQN agent 50k steps in Cartpole environment 
@@ -244,37 +223,6 @@ In this part, we assess the accuracy of trained models that extract the rules of
 
 
 Such highly accurate rules can help developers understand the conditions under which the agent fails. One can analyze, the concrete states that correspond to abstract states leading to faults to extract real-world conditions of failure. 
-For example, we extracted the following faulty rule $Not(S^\phi_{5})$ and $S^\phi_{12}$ and $S^\phi_{23}$ from our decision tree. First we extract all faulty episodes following this rule. Then, we extract from these episodes all concrete states belonging to the abstract states with the condition of presence in **R1**, i.e., $S^\phi_{12}$ and $S^\phi_{23}$.
-For abstract states $S^\phi_5$ where the rule states they should be absent, we extract the set of all corresponding concrete states from all episodes in the final dataset.
-Finally, for each abstract state in the rule, we analyze the distribution of each characteristic of the corresponding concrete states (i.e., the position of the cart, the velocity, the angle of the pole and the angular velocity) to interpret the situations under which the agent fails. below you see the boxplots of the mentioned distributions.
-
-<p align="center" width="100%">
-    <img width="100%" src="https://user-images.githubusercontent.com/23516995/171912017-75548e5b-9151-42f1-afbc-ffafbd8d163e.png"> 
-</p>
-
-
-
-<p align="center" width="100%">
-    <img width="100%" src="https://user-images.githubusercontent.com/23516995/171912194-b58beb6f-7cdd-402a-99d2-193b1c2f1664.png"> 
-</p>
-
-
-<p align="center" width="100%">
-    <img width="100%" src="https://user-images.githubusercontent.com/23516995/171912131-db832638-ea55-4754-a297-a8ae05a98b64.png"> 
-</p>
-
-
-Moreover, we rely on the median values of the distribution of the states' characteristics to illustrate each abstract state and hence the failing conditions. 
-We illustrate in the following figure an interpretation of such conditions.
-
-
-<p align="center" width="100%">
-    <img width="50%" src="https://user-images.githubusercontent.com/23516995/171913026-a1713863-4ac8-46d9-b930-6a20b7ba1a53.png"> 
-</p>
-
-Each cart represents one abstract state. The Gray cart depicts the state of the system in abstract state $S^\phi_5$, which should be absent in the episode. The black carts represent the presence of abstract states $S^\phi_{12}$ and $S^\phi_{23}$, respectively. Having both states of the cart shown in the right as and not having the state at the left indicate a fault.
-
-We realized that the presence of abstract states $S^\phi_{12}$ and $S^\phi_{23}$ represent situations where the cart is close to the right border of the track and the angle of the pole is towards the right. To compensate for the large angle of the pole, as you can see in the figure, the agent has no choice but to push the cart to the right, which results in a fault because of passing the border. Moreover, abstract state $S^\phi_{5}$ represents a situation where the angle of the pole is not large, and the position of the cart is toward the right but not close to the border. In such situation, the agent will be able to control the pole in the remaining area and keep the pole upright without crossing the border, which justifies why such abstract state should be absent in faulty episodes that satisfy rule **R1**.
 
 **Answer:** By using STARLA and interpretable ML models, such as Decision Trees, we can accurately learn rules that characterize the faulty episodes of RL agents.
 
