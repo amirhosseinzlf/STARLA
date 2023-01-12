@@ -61,9 +61,13 @@ The pole starts upright, and the goal is to balance it by moving the cart left o
 As depicted in the figure, the state of the system is characterized by four elements:
 
 • The position of the cart.
+
 • The velocity of the cart.
+
 • The angle of the pole.
+
 • The angular velocity of the pole.
+
 
 We provide a reward of +1 for each time step when the pole is still upright. 
 The episodes end in three cases: 
@@ -97,7 +101,9 @@ The state of the agent is defined based on:
 There are three discrete actions that can be used to control the car:
 
 • Accelerate to the left.
+
 • Accelerate to the right.
+
 • Do not accelerate.
 
 Episodes can have three termination scenarios: 
