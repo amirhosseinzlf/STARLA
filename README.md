@@ -40,7 +40,6 @@ STARLA Requires a DRL agent and its training data as input as tries to effective
 ![Approach4_page-0001](https://user-images.githubusercontent.com/23516995/168500802-50486e30-2c5d-43c2-a080-9cc01d964e30.jpg)
 
 
-
 As depicted, the main objective of STARLA is to generate and find episodes with high fault probabilities in order to assess whether an RL agent can be safely deployed. 
 The algorithm uses the data from the Agent to build ML models that predict the probabilities of fault (to which extent episodes are similar to faulty episodes). The outputs of these models are combined with the reward of the agent and certainty level. They are meant to guide the Genetic search toward faulty episodes. 
 
@@ -61,13 +60,10 @@ The pole starts upright, and the goal is to balance it by moving the cart left o
 
 As depicted in the figure, the state of the system is characterized by four elements:
 
-• The position of the cart
-
-• The velocity of the cart
-
-• The angle of the pole
-
-• The angular velocity of the pole
+• The position of the cart.
+• The velocity of the cart.
+• The angle of the pole.
+• The angular velocity of the pole.
 
 We provide a reward of +1 for each time step when the pole is still upright. 
 The episodes end in three cases: 
@@ -93,23 +89,16 @@ Since the gravity is stronger than the engine of the car, the car cannot climb u
     <img width="45%" src="https://user-images.githubusercontent.com/23516995/212111530-f4f0f644-f946-495a-80ce-97d720910032.JPG"> 
 </p>
 
+The state of the agent is defined based on:
 
+1. the location of the car along the x-axis.
+2. the velocity of the car.
 
-As illustrated in Figure~\ref{fig:MountainCarExample}, the state of the agent is defined based on:
-
-1. the location of the car along the x-axis, and 
-
-2. the velocity of the car
-
-There are three discrete actions that can be used to
-control the car:
+There are three discrete actions that can be used to control the car:
 
 • Accelerate to the left.
-
 • Accelerate to the right.
-
-• Do not accelerate
-
+• Do not accelerate.
 
 Episodes can have three termination scenarios: 
 
@@ -119,13 +108,9 @@ Episodes can have three termination scenarios:
 
 In our custom version of the Mountain Car, climbing the left hill is considered an unsafe situation. Consequently, reaching to the leftmost position in the environment results in a termination with the lowest reward. 
 
-
-Consider a situation in which we are trying to reach to the goal within 180 time steps.
-
 We define functional faults as follows:
 
-- **Functional fault:** If in an episode, the car climbs the left hill and passes the left border of the environment,  we consider that there is a functional fault and the reward is equal to the minimum reward (-200).
-
+- **Functional fault:** If in an episode, the car climbs the left hill and passes the left border of the environment, we consider that there is a functional fault and the reward is equal to the minimum reward (-200).
 
 
 ## Code Breakdown
