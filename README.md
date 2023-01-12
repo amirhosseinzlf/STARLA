@@ -47,9 +47,9 @@ The algorithm uses the data from the Agent to build ML models that predict the p
 In the Genetic search, we use specific crossover and mutation functions. Also as we have multiple fitness functions, we are using MOSA Algorithm[3]. For more explanations please see our paper. [arXiv:2206.07813](https://arxiv.org/abs/2206.07813)
 
 
-## Use Case 
+## Use Case 1: Cartpole
 
-This project is implemented in the Cartpole environment from the OpenAI Gym library[2]. Cartpole environment is an open-source and widely used environment for RL agents
+We use the Cartpole environment from the OpenAI Gym library[2] as first case study. Cartpole environment is an open-source and widely used environment for RL agents
 
 In the Cart-Pole (also known as invert pendulum), a pole is attached to a cart, which moves along a track. The movement of the cart is bidirectional so the available actions are pushing the cart to the left and right. However, the movement of the cart is restricted and the maximum rage is 2.4 from the central point. 
 The pole starts upright, and the goal is to balance it by moving the cart left or right.
@@ -77,11 +77,55 @@ The episodes end in three cases:
 
 Consider a situation in which we are trying to reach a reward above 70.
 
-We define reward and functional faults in the Cart-Pole problem as follows:
-
-- **Reward fault:** If the accumulative time steps of an episode is less than 70 then we consider that there is a reward fault in this episode (as the agent failed to reach the expected reward in the episode).
+We define functional faults in the Cart-Pole problem as follows:
 
 - **Functional fault:** If in a given episode, the cart moves away from the center with a distance above 2.4 units, regardless of the accumulated reward, we consider that there is a functional fault in that episode.
+
+## Use Case 2: Mountain Car
+
+In the second case study, we have a DQN agent (impelented by stable baselines[1]) in Mountain Car environment from the OpenAI Gym library[2]. Mountain car environment is an open-source and another widely used environment for RL agents
+
+In the Mountain Car problem, an under-powered car is located in a valley between two hills. 
+Since the gravity is stronger than the engine of the car, the car cannot climb up the steep slope even with full throttle. The objective is to control the car and strategically use its momentum to reach the goal state on top of the right hill as soon as possible. The agent is penalized by -1 for each time step until termination. 
+
+
+<p align="center" width="100%">
+    <img width="45%" src="https://user-images.githubusercontent.com/23516995/212111530-f4f0f644-f946-495a-80ce-97d720910032.JPG"> 
+</p>
+
+
+
+As illustrated in Figure~\ref{fig:MountainCarExample}, the state of the agent is defined based on:
+
+1. the location of the car along the x-axis, and 
+
+2. the velocity of the car
+
+There are three discrete actions that can be used to
+control the car:
+
+• Accelerate to the left.
+
+• Accelerate to the right.
+
+• Do not accelerate
+
+
+Episodes can have three termination scenarios: 
+
+1. reaching the goal state,
+2. crossing the left border, or 
+3. exceeding the limit of200 time steps.
+
+In our custom version of the Mountain Car, climbing the left hill is considered an unsafe situation. Consequently, reaching to the leftmost position in the environment results in a termination with the lowest reward. 
+
+
+Consider a situation in which we are trying to reach to the goal within 180 time steps.
+
+We define functional faults as follows:
+
+- **Functional fault:** If in an episode, the car climbs the left hill and passes the left border of the environment,  we consider that there is a functional fault and the reward is equal to the minimum reward (-200).
+
 
 
 ## Code Breakdown
