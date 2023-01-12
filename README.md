@@ -4,7 +4,8 @@
 - [Introduction](#introduction)
 - [Publication](#publication)
 - [Description of the Approach](#description-of-the-approach)
-- [Use case](#use-case)
+- [Use case 1](#use-case-1-cartpole)
+- [Use case 2](#use-case-2-mountain-car)
 - [Code breakdown](#code-breakdown)
   * [Requirements](#requirements)
   * [Getting started](#getting-started)
@@ -40,16 +41,15 @@ STARLA Requires a DRL agent and its training data as input as tries to effective
 ![Approach4_page-0001](https://user-images.githubusercontent.com/23516995/168500802-50486e30-2c5d-43c2-a080-9cc01d964e30.jpg)
 
 
-
 As depicted, the main objective of STARLA is to generate and find episodes with high fault probabilities in order to assess whether an RL agent can be safely deployed. 
 The algorithm uses the data from the Agent to build ML models that predict the probabilities of fault (to which extent episodes are similar to faulty episodes). The outputs of these models are combined with the reward of the agent and certainty level. They are meant to guide the Genetic search toward faulty episodes. 
 
 In the Genetic search, we use specific crossover and mutation functions. Also as we have multiple fitness functions, we are using MOSA Algorithm[3]. For more explanations please see our paper. [arXiv:2206.07813](https://arxiv.org/abs/2206.07813)
 
 
-## Use Case 
+## Use Case 1: Cartpole
 
-This project is implemented in the Cartpole environment from the OpenAI Gym library[2]. Cartpole environment is an open-source and widely used environment for RL agents
+We use the Cartpole environment from the OpenAI Gym library[2] as first case study. Cartpole environment is an open-source and widely used environment for RL agents
 
 In the Cart-Pole (also known as invert pendulum), a pole is attached to a cart, which moves along a track. The movement of the cart is bidirectional so the available actions are pushing the cart to the left and right. However, the movement of the cart is restricted and the maximum rage is 2.4 from the central point. 
 The pole starts upright, and the goal is to balance it by moving the cart left or right.
@@ -61,13 +61,10 @@ The pole starts upright, and the goal is to balance it by moving the cart left o
 
 As depicted in the figure, the state of the system is characterized by four elements:
 
-• The position of the cart
-
-• The velocity of the cart
-
-• The angle of the pole
-
-• The angular velocity of the pole
+• The position of the cart.
+• The velocity of the cart.
+• The angle of the pole.
+• The angular velocity of the pole.
 
 We provide a reward of +1 for each time step when the pole is still upright. 
 The episodes end in three cases: 
@@ -77,11 +74,44 @@ The episodes end in three cases:
 
 Consider a situation in which we are trying to reach a reward above 70.
 
-We define reward and functional faults in the Cart-Pole problem as follows:
-
-- **Reward fault:** If the accumulative time steps of an episode is less than 70 then we consider that there is a reward fault in this episode (as the agent failed to reach the expected reward in the episode).
+We define functional faults in the Cart-Pole problem as follows:
 
 - **Functional fault:** If in a given episode, the cart moves away from the center with a distance above 2.4 units, regardless of the accumulated reward, we consider that there is a functional fault in that episode.
+
+## Use Case 2: Mountain Car
+
+In the second case study, we have a DQN agent (impelented by stable baselines[1]) in Mountain Car environment from the OpenAI Gym library[2]. Mountain car environment is an open-source and another widely used environment for RL agents
+
+In the Mountain Car problem, an under-powered car is located in a valley between two hills. 
+Since the gravity is stronger than the engine of the car, the car cannot climb up the steep slope even with full throttle. The objective is to control the car and strategically use its momentum to reach the goal state on top of the right hill as soon as possible. The agent is penalized by -1 for each time step until termination. 
+
+
+<p align="center" width="100%">
+    <img width="45%" src="https://user-images.githubusercontent.com/23516995/212111530-f4f0f644-f946-495a-80ce-97d720910032.JPG"> 
+</p>
+
+The state of the agent is defined based on:
+
+1. the location of the car along the x-axis.
+2. the velocity of the car.
+
+There are three discrete actions that can be used to control the car:
+
+• Accelerate to the left.
+• Accelerate to the right.
+• Do not accelerate.
+
+Episodes can have three termination scenarios: 
+
+1. reaching the goal state,
+2. crossing the left border, or 
+3. exceeding the limit of200 time steps.
+
+In our custom version of the Mountain Car, climbing the left hill is considered an unsafe situation. Consequently, reaching to the leftmost position in the environment results in a termination with the lowest reward. 
+
+We define functional faults as follows:
+
+- **Functional fault:** If in an episode, the car climbs the left hill and passes the left border of the environment, we consider that there is a functional fault and the reward is equal to the minimum reward (-200).
 
 
 ## Code Breakdown
@@ -200,19 +230,33 @@ More precisely, the total testing budget in this scenario is equal to:
 Mutated episodes that have been executed during the search + Faulty episodes generated by STARLA (executed after the search)
 
 
-### Senario2: Randomly executed episodes are generated with STARLA and should be accounted for in the testing budget: 
+### Scenario2: Randomly executed episodes are generated with STARLA and should be accounted for in the testing budget: 
 In the second scenario, we assume that the agent is trained but not tested so far and we want to test the agent using STARLA. Therefore, we need to use part of our testing budget for random executions, to generate the required episodes. 
 
 More precisely, the total testing budget in this scenario is equal to:
 
 The number of episodes in the initial population (generated through random executions of the agent) + Mutated episodes that have been executed during the search + Faulty episodes generated by STARLA (executed after the search)
 
+
+
+
 <p align="center" width="100%">
-    <img width="60%" src="https://user-images.githubusercontent.com/23516995/171270072-a3b45f92-a13c-44a6-8f62-542f7b0aaba1.png"> 
+   <img width="465" alt="CartPole" src="https://user-images.githubusercontent.com/38301008/212175197-bba293be-da5b-4ea0-b894-e7803b262bf3.png">
+ </p>
+ <p align="center" width="50%">
+   Number of detected functional faults in the Cartpole case study
 </p>
 
 
-**Answer:** For both scenarios, we find significantly more functional faults with STARLA than with Random Testing using the same testing budget. 
+<p align="center" width="100%">
+    <img width="45%" src="https://user-images.githubusercontent.com/38301008/212175170-6ba47d61-2260-44ec-b18c-fdc3d80d28a6.png" > 
+</p>
+<p align="center" width="50%">
+   Number of detected functional faults in the Mountain Car case study
+</p>
+
+
+**Answer:** For both scenarios and in both case studies, we find significantly more functional faults with STARLA than with Random Testing using the same testing budget. 
 
 
 ## RQ2: Can we rely on ML models to predict faulty episodes?
@@ -222,7 +266,7 @@ The number of episodes in the initial population (generated through random execu
 We use Random Forest to predict the probabilities of reward and functional faults in a given episode.
 To build our training dataset, we sampled episodes from both episodes generated through random executions of the agent and episodes from the training phase of the agent. Episodes are encoded based on the presence or absence of their abstract states. We have two different ML models, one for predicting the probability of a reward fault and the other one for predicting the probability of a functional fault. We considered 70 % of data for training and 30% for testing.
 
-**Answer:** Using the mentioned ML classifier and feature representation, we can accurately classify the episodes of RL agents as having functional faults, reward faults, or no fault at all.
+**Answer:** Using the mentioned ML classifier and feature representation, we can accurately classify the episodes of RL agents as having functional faults or no fault at all.
 
 
 
@@ -230,21 +274,32 @@ To build our training dataset, we sampled episodes from both episodes generated 
 
 *Here, we investigate the learning of interpretable rules that characterize faulty episodes to understand the conditions under which the RL agent can be expected to fail.*
 
-
 For this reason, we need to rely on an interpretable ML model, in this case, a Decision Tree model, to learn such rules.
 We assess the accuracy of decision trees and therefore our ability to learn accurate rules based on the faulty episodes that we identify with STARLA. 
 In practice, engineers will need to use such an approach to assess the safety of using an RL agent and understand the reasons of faults.
 In this part, we assess the accuracy of trained models that extract the rules of functional and reward faults based on k-fold cross-validation.
 
-
+<!-- <p align="center" width="100%">
+    <img width="50%" src="https://user-images.githubusercontent.com/23516995/169616496-bebacddf-cb97-4ab3-bcf9-cfb8b654a4ee.png"> 
+</p> -->
 
 <p align="center" width="100%">
-    <img width="50%" src="https://user-images.githubusercontent.com/23516995/169616496-bebacddf-cb97-4ab3-bcf9-cfb8b654a4ee.png"> 
+    <img width="50%" src="https://user-images.githubusercontent.com/38301008/212181441-1f3237dd-f95e-4a77-9e6a-01717ce33f6c.png" > 
+</p>
+<p align="center" width="50%">
+   Accuracy of the fault detection rules in the Cartpole case study
+</p>
+
+<p align="center" width="100%">
+   <img width="50%" alt="CartPole" src="https://user-images.githubusercontent.com/38301008/212180368-aad9d8f4-c7ea-464f-8274-77bbade2c3e1.png">
+ </p>
+ <p align="center" width="50%">
+   Accuracy of the fault detection rulesin the Mountain Car case study
 </p>
 
 
 Such highly accurate rules can help developers understand the conditions under which the agent fails. One can analyze, the concrete states that correspond to abstract states leading to faults to extract real-world conditions of failure. 
-For example, we extracted the following faulty rule $Not(S^\phi_{5})$ and $S^\phi_{12}$ and $S^\phi_{23}$ from our decision tree. First we extract all faulty episodes following this rule. Then, we extract from these episodes all concrete states belonging to the abstract states with the condition of presence in **R1**, i.e., $S^\phi_{12}$ and $S^\phi_{23}$.
+For example, we extracted the following faulty rule in the Cartpole problem $Not(S^\phi_{5})$ and $S^\phi_{12}$ and $S^\phi_{23}$ from our decision tree. First we extract all faulty episodes following this rule. Then, we extract from these episodes all concrete states belonging to the abstract states with the condition of presence in **R1**, i.e., $S^\phi_{12}$ and $S^\phi_{23}$.
 For abstract states $S^\phi_5$ where the rule states they should be absent, we extract the set of all corresponding concrete states from all episodes in the final dataset.
 Finally, for each abstract state in the rule, we analyze the distribution of each characteristic of the corresponding concrete states (i.e., the position of the cart, the velocity, the angle of the pole and the angular velocity) to interpret the situations under which the agent fails. below you see the boxplots of the mentioned distributions.
 
