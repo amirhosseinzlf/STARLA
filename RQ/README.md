@@ -43,6 +43,12 @@ The number of episodes in the initial population (generated through random execu
 We use Random Forest to predict the probabilities of reward and functional faults in a given episode.
 To build our training dataset, we sampled episodes from both episodes generated through random executions of the agent and episodes from the training phase of the agent. Episodes are encoded based on the presence or absence of their abstract states. We have two different ML models, one for predicting the probability of a reward fault and the other one for predicting the probability of a functional fault. We considered 70 % of data for training and 30% for testing.
 
+<p align="center" width="100%">
+    <img width="60%" src="https://user-images.githubusercontent.com/23516995/212187951-5a9e0ceb-f209-45d7-88d0-f41df9da007e.png"> 
+</p>
+
+
+
 **Answer:** Using the mentioned ML classifier and feature representation, we can accurately classify the episodes of RL agents as having functional faults, reward faults, or no fault at all.
 
 
