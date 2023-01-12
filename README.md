@@ -131,6 +131,9 @@ We have two main notebook files the first one is `STARLA.ipynb` which contains t
 
 `Execute_Results.ipynb` removed the duplicated episodes in the results and executed the final set of episodes. This is to keep only valid and consistent failing episodes. Thes results are saved as files.
 
+Mountain Car folder contains the implementation of STARLA on Mountain Car problem. Files follow the same structore as well. 
+`RUN_STARLA_MTC.ipynb` contains the implementation of our search-based testing approach for Mountain Car enrironment, `RE_EXECUTE_MTC.ipynb` is the final step to execute the results.
+
 As our algorithm is randomized to have a fair comparison we need to run our algorithm and the baseline many times and compare the results. 
 
 
