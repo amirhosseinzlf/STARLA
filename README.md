@@ -248,7 +248,7 @@ The number of episodes in the initial population (generated through random execu
 
 
 <p align="center" width="100%">
-   <img width="465" alt="CartPole" src="https://user-images.githubusercontent.com/38301008/212175197-bba293be-da5b-4ea0-b894-e7803b262bf3.png">
+   <img width="45%" alt="CartPole" src="https://user-images.githubusercontent.com/38301008/212175197-bba293be-da5b-4ea0-b894-e7803b262bf3.png">
  </p>
  <p align="center" width="50%">
    Number of detected functional faults in the Cartpole case study
