@@ -210,11 +210,14 @@ This is the root directory of the repository. The directory is structured as fol
   
 ### Dataset Structure 
 
-  A Dataset is provided to reproduce the results. This dataset contains our DRL agent, training data of the agent, episodes of random testing of the agent, episodes generated STARLA, execution data of generated episodes as well as the data required to compare the similarities of states and answer RQs.
+  A Dataset is provided to reproduce the results. This dataset contains our DRL agent, training data of the agent, episodes of random testing of the agent, episodes generated STARLA, execution data of generated episodes as well as the data required to compare the similarities of states and answer RQs for both use cases. Thus the dataset is devided into two parts:
+  1. Dataset_Cart_Pole 
+  2. Dataset_MTC
   
 
-    STARLA-dataset
+    Dataset
      .
+     |Dataset_Cart_pole/
      |
      |--- /dqn-cartpole-50000-with127-GA-Mut-2.pkl             Trained DQN agent 50k steps in Cartpole environment 
      |
@@ -222,15 +225,40 @@ This is the root directory of the repository. The directory is structured as fol
      |
      |--- /Abstract_unique1_for_d=1.pickle                     Abstract states data     
      |
-     |--- /mutation_numbers.pickle                             Number of Mutations that happened during the search
+     |--- /mutation_number_t.pickle                            Number of Mutations that happened during the search
      |
      |--- /random_test_data.pickle                             Random tests episodes representing the final policy of the agent. This also provides the data as a baseline for comparison.
+     |
+     |--- /random_test_data_start_state.pickle                 Initial states of random episodes
      |
      |--- /Results/                                            Generated episodes as a result of running STARLA.ipynb. This folder contains results of 20 executions
      |
      |--- /Executions/                                         Executed results 
      |
      |--- /Execution-Similarity/                               Executed results + similarity of states
+     |
+     |
+     |
+     |
+     |Dataset_MTC/
+     |
+     |--- /dqn-4-1-6-89946.zip                                 Trained DQN agent 90k steps in Mountain Car environment 
+     |
+     |--- /Final_episodes_trainand_Test_2062_FIXED2.pickle     Training data of ML models 
+     |
+     |--- /newly_seen_abs.pickle                               Newly seen abstract states during the search     
+     |
+     |--- /ToTalMutationNumber0.pickle                         Number of Mutations that happened during the search
+     |
+     |--- /RandomDataset/                                      Random tests episodes representing the final policy of the agent. This also provides the data as a baseline for comparison.
+     |
+     |--- /Abstraction/                                        Abstract class data
+     |
+     |--- /Results/                                            Results of running RUN_STARLA_MTC.ipynb. This folder contains results of 20 executions
+     |
+     |--- /Generation/                                         Generated episodes in 20 executions 
+     |
+     |--- /Exe_Sim/                                            Executed results + similarity of states
                  
      
 ----------------
