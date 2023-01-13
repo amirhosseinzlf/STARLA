@@ -409,3 +409,19 @@ References
 
 4- [virtual vs. real:Trading off simulations and physical experiments in reinforcement learning with Bayesian optimization](https://dl.acm.org/doi/abs/10.1109/ICRA.2017.7989186)
 
+
+Cite our paper:
+--------
+
+If you've found STARLA useful for your research, please cite our paper as follows:
+
+    @misc{https://doi.org/10.48550/arxiv.2206.07813,
+    doi = {10.48550/ARXIV.2206.07813},
+    url = {https://arxiv.org/abs/2206.07813},
+    author = {Zolfagharian, Amirhossein and Abdellatif, Manel and Briand, Lionel and Bagherzadeh, Mojtaba and S, Ramesh},
+    keywords = {Software Engineering (cs.SE), Artificial Intelligence (cs.AI), Machine Learning (cs.LG), FOS: Computer and information sciences, FOS: Computer and information sciences},
+    title = {Search-Based Testing Approach for Deep Reinforcement Learning Agents},
+    publisher = {arXiv},
+    year = {2022},
+    opyright = {arXiv.org perpetual, non-exclusive license}
+    }
