@@ -1,3 +1,5 @@
+
+[![DOI](https://img.shields.io/badge/DOI-10.7910%2FDVN%2FXWIWVS-orange)](https://doi.org/10.7910/DVN/XWIWVS)
 # STARLA: Search-Based Testing Approach for Deep Reinforcement Learning Agents
 
 ## Table of Contents
