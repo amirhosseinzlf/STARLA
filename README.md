@@ -4,8 +4,9 @@
 - [Introduction](#introduction)
 - [Publication](#publication)
 - [Description of the Approach](#description-of-the-approach)
-- [Use case 1](#use-case-1-cartpole)
-- [Use case 2](#use-case-2-mountain-car)
+- [Use cases](#use-case-1-cartpole)
+ * [Use case 1](#use-case-1-cartpole)
+ * [Use case 2](#use-case-2-mountain-car)
 - [Code breakdown](#code-breakdown)
   * [Requirements](#requirements)
   * [Getting started](#getting-started)
@@ -46,6 +47,8 @@ The algorithm uses the data from the Agent to build ML models that predict the p
 
 In the Genetic search, we use specific crossover and mutation functions. Also as we have multiple fitness functions, we are using MOSA Algorithm[3]. For more explanations please see our paper. [arXiv:2206.07813](https://arxiv.org/abs/2206.07813)
 
+
+# Use cases
 
 ## Use Case 1: Cartpole
 
