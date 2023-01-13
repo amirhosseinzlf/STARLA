@@ -214,6 +214,7 @@ This is the root directory of the repository. The directory is structured as fol
   1. Dataset_Cart_Pole 
   2. Dataset_MTC
   
+  below is the structure of the dataset:
 
     Dataset
      .
