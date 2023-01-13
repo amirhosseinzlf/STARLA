@@ -1,5 +1,5 @@
 
-[![DOI](https://img.shields.io/badge/DOI-10.7910%2FDVN%2FXWIWVS-orange)](https://doi.org/10.7910/DVN/XWIWVS)
+[![DOI](https://img.shields.io/badge/DOI-10.7910%2FDVN%2FXWIWVS-orange?style=plastic)](https://doi.org/10.7910/DVN/XWIWVS)
 ![GitHub](https://img.shields.io/github/license/amirhosseinzlf/STARLA?style=plastic)
 ![arXiv](https://img.shields.io/badge/arXiv%20-2206.07813-red?style=plastic&logo=arxiv)
 # STARLA: Search-Based Testing Approach for Deep Reinforcement Learning Agents
