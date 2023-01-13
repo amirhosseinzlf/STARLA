@@ -185,11 +185,24 @@ This is the root directory of the repository. The directory is structured as fol
     Replication package of STARLA
      .
      |
-     |--- STARLA/RQ/                        Codes to replicate RQ1 - RQ2 and RQ3
+     |STARLA/
      |
-     |--- STARLA.ipynb                      Implementation of the algorithm
+     |--- Cart-Pole/                               Cart-Pole use case
      |
-     |--- Execute_Results.ipynb             Execution of the result (required for RQ1 and RQ3)             
+     |---------- /RQ/                              Codes to replicate RQ1 - RQ2 and RQ3
+     |
+     |---------- STARLA.ipynb                      Implementation of the algorithm on Cart-Pole problem
+     |
+     |---------- Execute_Results.ipynb             Execution of the result (required for RQ1 and RQ3)            
+     |
+     |
+     |--- Mountain_Car/                            Mountain Car use case
+     |
+     |---------- /RQ/                              Codes to replicate RQ1 - RQ2 and RQ3
+     |
+     |---------- RUN_STARLA_MTC.ipynb                      Implementation of the algorithm on Mountain Car problem
+     |
+     |---------- RE_EXECUTE_MTC.ipynb             Execution of the result (required for RQ1 and RQ3)          
   
 ### Dataset Structure 
 
