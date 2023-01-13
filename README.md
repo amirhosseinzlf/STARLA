@@ -1,5 +1,6 @@
 
 [![DOI](https://img.shields.io/badge/DOI-10.7910%2FDVN%2FXWIWVS-orange)](https://doi.org/10.7910/DVN/XWIWVS)
+![GitHub](https://img.shields.io/github/license/amirhosseinzlf/STARLA?style=plastic)
 # STARLA: Search-Based Testing Approach for Deep Reinforcement Learning Agents
 
 ## Table of Contents
@@ -172,7 +173,7 @@ Here is the documentation on how to use this replication package.
 ### Getting Started
 
 1. Clone the repo on your Google drive and run the codes using Google Colab https://colab.research.google.com/.
-2. Download the Dataset of replication package from [here](https://drive.google.com/drive/folders/16ALL0MuDw2bIDJenD12VLny_4vY23qDE?usp=sharing) and upload it to you Google drive (if you change the location of the files you need to update their path in notebooks).
+2. Download the Dataset of replication package from Harvard Dataverse [here](https://doi.org/10.7910/DVN/XWIWVS) and upload it to you Google drive (if you change the location of the files you need to update their path in notebooks).
 3. To generate test episodes: open `STARLA.ipynb` Mount your drive and run the code.
 4. To execute the final results run `Execute_Results.ipynb`.
 
@@ -361,7 +362,7 @@ We realized that the presence of abstract states $S^\phi_{12}$ and $S^\phi_{23}$
 
 **Answer:** By using STARLA and interpretable ML models, such as Decision Trees, we can accurately learn rules that characterize the faulty episodes of RL agents.
 
-
+NOTE:TensorFlow 1.X is no longer supported by Google Colab. It is recommended that you create your own virtual environment with Python 3.7 and install the necessary requirements.
 
 Acknowledgements
 --------------
