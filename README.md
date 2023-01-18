@@ -420,8 +420,9 @@ If you've found STARLA useful for your research, please cite our paper as follow
     url = {https://arxiv.org/abs/2206.07813},
     author = {Zolfagharian, Amirhossein and Abdellatif, Manel and Briand, Lionel and Bagherzadeh, Mojtaba and S, Ramesh},
     keywords = {Software Engineering (cs.SE), Artificial Intelligence (cs.AI), Machine Learning (cs.LG), FOS: Computer and information sciences, FOS: Computer and information sciences},
-    title = {Search-Based Testing Approach for Deep Reinforcement Learning Agents},
+    title = {A Search-Based Testing Approach for Deep Reinforcement Learning Agents},
     publisher = {arXiv},
     year = {2022},
-    opyright = {arXiv.org perpetual, non-exclusive license}
+    copyright = {arXiv.org perpetual, non-exclusive license}
     }
+
