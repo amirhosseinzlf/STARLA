@@ -1,7 +1,7 @@
 
-[![DOI](https://img.shields.io/badge/DOI-10.7910%2FDVN%2FXWIWVS-orange)](https://doi.org/10.7910/DVN/XWIWVS)
+[![DOI](https://img.shields.io/badge/DOI-10.7910%2FDVN%2FXWIWVS-orange?style=plastic)](https://doi.org/10.7910/DVN/XWIWVS)
 ![GitHub](https://img.shields.io/github/license/amirhosseinzlf/STARLA?style=plastic)
-![arXiv](https://img.shields.io/badge/arXiv%20-2206.07813-red?style=plastic&logo=arxiv)
+[![arXiv](https://img.shields.io/badge/arXiv%20-2206.07813-red?style=plastic&logo=arxiv)](https://arxiv.org/abs/2206.07813)
 # STARLA: Search-Based Testing Approach for Deep Reinforcement Learning Agents
 
 ## Table of Contents
@@ -408,4 +408,21 @@ References
 3- [MOSA](https://ieeexplore.ieee.org/document/7840029)
 
 4- [virtual vs. real:Trading off simulations and physical experiments in reinforcement learning with Bayesian optimization](https://dl.acm.org/doi/abs/10.1109/ICRA.2017.7989186)
+
+
+Cite our paper:
+--------
+
+If you've found STARLA useful for your research, please cite our paper as follows:
+
+    @misc{https://doi.org/10.48550/arxiv.2206.07813,
+    doi = {10.48550/ARXIV.2206.07813},
+    url = {https://arxiv.org/abs/2206.07813},
+    author = {Zolfagharian, Amirhossein and Abdellatif, Manel and Briand, Lionel and Bagherzadeh, Mojtaba and S, Ramesh},
+    keywords = {Software Engineering (cs.SE), Artificial Intelligence (cs.AI), Machine Learning (cs.LG), FOS: Computer and information sciences, FOS: Computer and information sciences},
+    title = {A Search-Based Testing Approach for Deep Reinforcement Learning Agents},
+    publisher = {arXiv},
+    year = {2022},
+    copyright = {arXiv.org perpetual, non-exclusive license}
+    }
 
