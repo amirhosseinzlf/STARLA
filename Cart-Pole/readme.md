@@ -106,7 +106,6 @@ The number of episodes in the initial population (generated through random execu
 
 **Answer:** For both scenarios, we find significantly more functional faults with STARLA than with Random Testing using the same testing budget. 
 
-Note: The average number of replacements per episode in the Cart-Pole environment is 42 where the average length of episodes is 129. 
 
 ## RQ2: Can we rely on ML models to predict faulty episodes?
 
