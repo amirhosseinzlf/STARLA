@@ -37,6 +37,7 @@ The number of episodes in the initial population (generated through random execu
 
 **Answer:** For both scenarios, we find significantly more functional faults with STARLA than with Random Testing using the same testing budget. 
 
+Note: The average number of replacements per episode in the Mountain Car environment is 25 and the average length of episodes is 88. For more information please read section 4.6 of the paper
 
 ## RQ2: Can we rely on ML models to predict faulty episodes?
 
